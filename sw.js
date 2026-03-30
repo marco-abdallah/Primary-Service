@@ -1,4 +1,4 @@
-const cacheName = 'khidma-app-v3';
+const cacheName = 'khidma-app-v4';
 const assets = [
   './',
   './index.html',
