@@ -8,6 +8,17 @@
 	<meta name="theme-color" content="#2c3e50">
 	<link rel="apple-touch-icon" href="icon-192.png">
     <style>
+	/* تحسين استجابة الشبكة للموبايلات الصغيرة */
+	@media (max-width: 480px) {
+	    .grid-container {
+	        grid-template-columns: repeat(2, 1fr); /* عرض كارتين في الصف الواحد بدلاً من واحد */
+	        gap: 10px;
+	        padding: 10px;
+	    }
+	    .header-section h1 {
+	        font-size: 1.8rem;
+	    }
+	}
         /* إعدادات الخطوط والألوان العامة */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
