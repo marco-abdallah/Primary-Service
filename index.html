@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>خدمة ابتدائي - كنيسة مارجرجس</title>
+    <title>خدمة ابتدائي - كنيسة مارجرجس باكوس</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FF6B6B">
-    <link rel="apple-touch-icon" href="icon-192.png">
 
     <style>
         :root {
@@ -17,6 +16,7 @@
             --accent-color: #4ECDC4;
             --text-main: #2C3E50;
             --header-gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+            --notice-bg: rgba(255, 255, 255, 0.2);
         }
 
         [data-theme="dark"] {
@@ -24,6 +24,7 @@
             --bg-card: #1E1E1E;
             --text-main: #E0E0E0;
             --header-gradient: linear-gradient(135deg, #1e1e1e 0%, #2c3e50 100%);
+            --notice-bg: rgba(0, 0, 0, 0.3);
         }
 
         body {
@@ -31,15 +32,15 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0;
-            padding: 0;
+            padding-bottom: 30px;
             transition: all 0.3s ease;
         }
 
-        /* المستطيل العلوي الجديد */
+        /* المستطيل العلوي */
         .top-header-card {
             background: var(--header-gradient);
             margin: 15px;
-            padding: 25px 15px;
+            padding: 20px 15px;
             border-radius: 25px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             display: flex;
@@ -47,46 +48,78 @@
             align-items: center;
             color: white;
             position: relative;
-            animation: slideDown 0.6s ease;
+            overflow: hidden;
         }
 
         .main-logo {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 4px solid rgba(255,255,255,0.3);
+            border: 3px solid rgba(255,255,255,0.4);
             background: white;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             object-fit: cover;
         }
 
-        .top-header-card h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            font-weight: 800;
+        .top-header-card h1 { margin: 0; font-size: 1.5rem; font-weight: 800; }
+        .top-header-card h3 { margin: 5px 0 10px; font-weight: 300; font-size: 0.9rem; opacity: 0.9; }
+
+        /* قسم التنبيهات الجديد */
+        .notice-container {
+            background: var(--notice-bg);
+            width: 90%;
+            padding: 8px 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .top-header-card h3 {
-            margin: 5px 0 0;
-            font-weight: 300;
-            opacity: 0.9;
+        .notice-icon { font-size: 1.2rem; animation: ring 2s infinite; }
+
+        .notice-text {
+            font-size: 0.85rem;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            flex: 1;
         }
 
-        /* توقيت التحديث */
+        /* تحريك النص */
+        .notice-text span {
+            display: inline-block;
+            padding-right: 100%;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes ring {
+            0% { transform: rotate(0); }
+            10% { transform: rotate(15deg); }
+            20% { transform: rotate(-15deg); }
+            30% { transform: rotate(10deg); }
+            40% { transform: rotate(-10deg); }
+            50% { transform: rotate(0); }
+        }
+
         .update-badge {
-            margin-top: 15px;
-            font-size: 0.75rem;
-            background: rgba(255,255,255,0.2);
-            padding: 5px 12px;
-            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 0.65rem;
+            opacity: 0.8;
         }
 
-        /* شبكة الكروت */
+        /* شبكة الأزرار */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            padding: 15px;
+            padding: 10px 15px;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -94,24 +127,20 @@
         .card {
             background: var(--bg-card);
             border-radius: 20px;
-            padding: 20px;
+            padding: 18px 10px;
             text-decoration: none;
             color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: transform 0.2s;
         }
 
-        .card:active { transform: scale(0.95); }
-
-        .card img { width: 50px; height: 50px; margin-bottom: 10px; }
-
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        .card:active { transform: scale(0.92); background: var(--accent-color); color: white; }
+        .card img { width: 45px; height: 45px; margin-bottom: 8px; }
+        .card h3 { margin: 0; font-size: 0.9rem; }
 
         .theme-toggle {
             position: absolute;
@@ -120,8 +149,8 @@
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -134,41 +163,76 @@
         <img src="Screenshot_20260215_205840_WhatsApp.jpg" alt="Logo" class="main-logo">
         <h1>كنيسة مارجرجس باكوس</h1>
         <h3>خدمة ابتدائي</h3>
-        <div class="update-badge" id="lastUpdate">جاري التحميل...</div>
+
+        <div class="notice-container">
+            <span class="notice-icon">🔔</span>
+            <div class="notice-text">
+                <span>تنبيه: اجتماع الخدام القادم يوم الجمعة الساعة 6 مساءً بالقاعة الكبرى.</span>
+            </div>
+        </div>
+
+        <div class="update-badge" id="lastUpdate">آخر تحديث للبيانات: 30 مارس 2026</div>
     </div>
 
     <div class="grid-container">
         <a href="files-kg.pdf" class="card" download>
             <img src="https://img.icons8.com/fluency/96/teddy-bear.png" alt="icon">
-            <h3>حضانة</h3>
+            <h3>مرحلة حضانة</h3>
         </a>
         <a href="files-grade1.pdf" class="card" download>
             <img src="https://img.icons8.com/fluency/96/1-circle.png" alt="icon">
-            <h3>أولي</h3>
+            <h3>أولي ابتدائي</h3>
         </a>
-        </div>
+        <a href="files-grade2.pdf" class="card" download>
+            <img src="https://img.icons8.com/fluency/96/2-circle.png" alt="icon">
+            <h3>تانية ابتدائي</h3>
+        </a>
+        <a href="files-grade3.pdf" class="card" download>
+            <img src="https://img.icons8.com/fluency/96/3-circle.png" alt="icon">
+            <h3>تالته ابتدائي</h3>
+        </a>
+        <a href="files-grade4.pdf" class="card" download>
+            <img src="https://img.icons8.com/fluency/96/4-circle.png" alt="icon">
+            <h3>رابعة ابتدائي</h3>
+        </a>
+        <a href="files-grade5.pdf" class="card" download>
+            <img src="https://img.icons8.com/fluency/96/5-circle.png" alt="icon">
+            <h3>خامسة ابتدائي</h3>
+        </a>
+        <a href="files-grade6.pdf" class="card" download>
+            <img src="https://img.icons8.com/fluency/96/6-circle.png" alt="icon">
+            <h3>سادسة ابتدائي</h3>
+        </a>
+        <a href="#" class="card">
+            <img src="https://img.icons8.com/fluency/96/conference-call.png" alt="icon">
+            <h3>الخدام</h3>
+        </a>
+        <a href="https://mega.nz/folder/0rpFnDqC#vLN2Pj-i_04RyR-wSgJgiw" class="card" target="_blank">
+            <img src="https://img.icons8.com/fluency/96/idea.png" alt="icon">
+            <h3>وسائل إيضاح</h3>
+        </a>
+        <a href="#" class="card">
+            <img src="https://img.icons8.com/fluency/96/opened-folder.png" alt="icon">
+            <h3>التحضير</h3>
+        </a>
+        <a href="#" class="card">
+            <img src="https://img.icons8.com/fluency/96/praying-hands.png" alt="icon">
+            <h3>الخدمات</h3>
+        </a>
+    </div>
 
     <script>
-        // عرض تاريخ آخر تحديث
-        document.getElementById('lastUpdate').innerText = "آخر تحديث: " + new Date().toLocaleDateString('ar-EG');
-
-        // تبديل الثيم
         function toggleTheme() {
             const body = document.body;
             const theme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             body.setAttribute('data-theme', theme);
             document.getElementById('themeBtn').innerText = theme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('user-theme', theme);
         }
+        if(localStorage.getItem('user-theme') === 'dark') toggleTheme();
 
-        // تسجيل الـ Service Worker للعمل Offline
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(reg => {
-                    console.log('Service Worker Registered!');
-                }).catch(err => {
-                    console.log('Service Worker Failed!', err);
-                });
-            });
+            window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js'); });
         }
     </script>
 </body>
