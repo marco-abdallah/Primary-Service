@@ -34,10 +34,9 @@
             margin: 0;
             padding-bottom: 30px;
             transition: all 0.3s ease;
-            -webkit-user-select: none; /* منع تحديد النص لشعور التطبيق */
+            -webkit-user-select: none;
         }
 
-        /* المستطيل العلوي */
         .top-header-card {
             background: var(--header-gradient);
             margin: 15px;
@@ -65,7 +64,6 @@
         .top-header-card h1 { margin: 0; font-size: 1.5rem; font-weight: 800; }
         .top-header-card h3 { margin: 5px 0 10px; font-weight: 300; font-size: 0.9rem; opacity: 0.9; }
 
-        /* شريط التنبيهات */
         .notice-container {
             background: var(--notice-bg);
             width: 90%;
@@ -78,32 +76,13 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .notice-text {
-            font-size: 0.85rem;
-            white-space: nowrap;
-            overflow: hidden;
-            position: relative;
-            flex: 1;
-        }
+        .notice-text { font-size: 0.85rem; whitespace: nowrap; overflow: hidden; position: relative; flex: 1; }
+        .notice-text span { display: inline-block; padding-right: 100%; animation: marquee 15s linear infinite; }
 
-        .notice-text span {
-            display: inline-block;
-            padding-right: 100%;
-            animation: marquee 15s linear infinite;
-        }
+        @keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-        @keyframes marquee {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
+        .update-badge { margin-top: 10px; font-size: 0.65rem; opacity: 0.8; }
 
-        .update-badge {
-            margin-top: 10px;
-            font-size: 0.65rem;
-            opacity: 0.8;
-        }
-
-        /* شبكة الأزرار */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -127,21 +106,9 @@
             transition: transform 0.2s;
         }
 
-        .card:active {
-            transform: scale(0.92);
-            background: var(--accent-color);
-            color: white;
-        }
-
-        .card img {
-            width: 45px;
-            height: 45px;
-            margin-bottom: 8px;
-            transition: filter 0.2s;
-        }
-
+        .card:active { transform: scale(0.92); background: var(--accent-color); color: white; }
+        .card img { width: 45px; height: 45px; margin-bottom: 8px; transition: filter 0.2s; }
         .card:active img { filter: brightness(0) invert(1); }
-
         .card h3 { margin: 0; font-size: 0.9rem; font-weight: 600; }
 
         .theme-toggle {
@@ -155,10 +122,8 @@
             height: 35px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.1rem;
         }
 
-        /* للهواتف الأكبر والتابلت */
         @media (min-width: 600px) {
             .grid-container { grid-template-columns: repeat(3, 1fr); }
         }
@@ -183,59 +148,20 @@
     </div>
 
     <div class="grid-container">
+        <a href="files-kg.pdf" class="card" download><img src="https://img.icons8.com/fluency/96/teddy-bear.png" alt="icon"><h3>مرحلة حضانة</h3></a>
+        <a href="files-grade1.pdf" class="card" download><img src="https://img.icons8.com/fluency/96/1-circle.png" alt="icon"><h3>أولي ابتدائي</h3></a>
+        <a href="files-grade2.pdf" class="card" download><img src="https://img.icons8.com/fluency/96/2-circle.png" alt="icon"><h3>تانية ابتدائي</h3></a>
+        <a href="files-grade3.pdf" class="card" download><img src="https://img.icons8.com/fluency/96/3-circle.png" alt="icon"><h3>تالته ابتدائي</h3></a>
+        <a href="files-grade4.pdf" class="card" download><img src="https://img.icons8.com/fluency/96/4-circle.png" alt="icon"><h3>رابعة ابتدائي</h3></a>
+        <a href="files-grade5.pdf" class="card" download><img src="https://img.icons8.com/fluency/96/5-circle.png" alt="icon"><h3>خامسة ابتدائي</h3></a>
+        <a href="files-grade6.pdf" class="card" download><img src="https://img.icons8.com/fluency/96/6-circle.png" alt="icon"><h3>سادسة ابتدائي</h3></a>
         
-        <a href="files-kg.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/teddy-bear.png" alt="icon">
-            <h3>مرحلة حضانة</h3>
-        </a>
-
-        <a href="files-grade1.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/1-circle.png" alt="icon">
-            <h3>أولي ابتدائي</h3>
-        </a>
-
-        <a href="files-grade2.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/2-circle.png" alt="icon">
-            <h3>تانية ابتدائي</h3>
-        </a>
-
-        <a href="files-grade3.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/3-circle.png" alt="icon">
-            <h3>تالته ابتدائي</h3>
-        </a>
-
-        <a href="files-grade4.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/4-circle.png" alt="icon">
-            <h3>رابعة ابتدائي</h3>
-        </a>
-
-        <a href="files-grade5.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/5-circle.png" alt="icon">
-            <h3>خامسة ابتدائي</h3>
-        </a>
-
-        <a href="files-grade6.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/6-circle.png" alt="icon">
-            <h3>سادسة ابتدائي</h3>
-        </a>
-
-        <a href="files-grade6.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/conference-call.png" alt="icon">
-            <h3>الخدام</h3>
-        </a>
-
-        <a href="https://mega.nz/folder/0rpFnDqC#vLN2Pj-i_04RyR-wSgJgiw" class="card" target="_blank">
-            <img src="https://img.icons8.com/fluency/96/idea.png" alt="icon">
-            <h3>وسائل إيضاح</h3>
-        </a>
-
-        <a href="files-grade6.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/opened-folder.png" alt="icon">
-            <h3>التحضير</h3>
-        </a>
-
-        <a href="files-grade6.pdf" class="card" download>
-            <img src="https://img.icons8.com/fluency/96/praying-hands.png" alt="icon">
+        <a href="#" class="card"><img src="https://img.icons8.com/fluency/96/conference-call.png" alt="icon"><h3>الخدام</h3></a>
+        <a href="https://mega.nz/folder/0rpFnDqC#vLN2Pj-i_04RyR-wSgJgiw" class="card" target="_blank"><img src="https://img.icons8.com/fluency/96/idea.png" alt="icon"><h3>وسائل إيضاح</h3></a>
+        <a href="#" class="card"><img src="https://img.icons8.com/fluency/96/opened-folder.png" alt="icon"><h3>التحضير</h3></a>
+        
+        <a href="#" class="card">
+            <img src="https://img.icons8.com/fluency/96/globe--v2.png" alt="الخدمات">
             <h3>الخدمات</h3>
         </a>
 
@@ -259,7 +185,7 @@
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
                 .then(reg => console.log('Offline mode active!'))
-                .catch(err => console.log('Offline setup failed.'));
+                .catch(err => console.log('Offline setup failed.', err));
             });
         }
     </script>
