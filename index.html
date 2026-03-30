@@ -17,6 +17,7 @@
             --text-main: #2C3E50;
             --header-gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
             --notice-bg: rgba(255, 255, 255, 0.2);
+            --input-border: #ccc;
         }
 
         [data-theme="dark"] {
@@ -25,6 +26,7 @@
             --text-main: #E0E0E0;
             --header-gradient: linear-gradient(135deg, #1e1e1e 0%, #2c3e50 100%);
             --notice-bg: rgba(0, 0, 0, 0.3);
+            --input-border: #444;
         }
 
         body {
@@ -37,7 +39,98 @@
             -webkit-user-select: none; /* منع تحديد النص لشعور التطبيق */
         }
 
-        /* المستطيل العلوي */
+        /* ----- تنسيقات صفحة تسجيل الدخول الجديدة ----- */
+        #loginScreen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10000; /* للتأكد من ظهورها فوق كل شيء */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* خلفية صفحة اللوجن مع التباين المنخفض */
+        #loginBg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* يمكنك تغيير هذه الصورة لأي صورة خلفية تريدها */
+            background-image: url('Screenshot_20260215_205840_WhatsApp.jpg');
+            background-size: cover;
+            background-position: center;
+            /* تقليل التباين، السطوع، وإضافة ضبابية خفيفة */
+            filter: blur(4px) contrast(0.5) brightness(0.7);
+            -webkit-filter: blur(4px) contrast(0.5) brightness(0.7);
+            z-index: -1;
+            transform: scale(1.1); /* لتجنب الحواف البيضاء عند الضبابية */
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 350px;
+            background: rgba(255, 255, 255, 0.85); /* خلفية بيضاء شفافة */
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            backdrop-filter: blur(5px); /* تأثير زجاجي إضافي */
+        }
+
+        [data-theme="dark"] .login-card {
+            background: rgba(30, 30, 30, 0.85);
+        }
+
+        .login-card .main-logo {
+            width: 70px; height: 70px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .login-card h2 {
+            margin: 10px 0 20px;
+            color: var(--text-main);
+            font-size: 1.3rem;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--input-border);
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-family: inherit;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--header-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.1s;
+        }
+
+        .login-btn:active { transform: scale(0.96); }
+
+        #loginError {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* ----- التنسيقات الأصلية (لم تتغير) ----- */
         .top-header-card {
             background: var(--header-gradient);
             margin: 15px;
@@ -65,7 +158,6 @@
         .top-header-card h1 { margin: 0; font-size: 1.5rem; font-weight: 800; }
         .top-header-card h3 { margin: 5px 0 10px; font-weight: 300; font-size: 0.9rem; opacity: 0.9; }
 
-        /* شريط التنبيهات */
         .notice-container {
             background: var(--notice-bg);
             width: 90%;
@@ -103,7 +195,6 @@
             opacity: 0.8;
         }
 
-        /* شبكة الأزرار */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -124,13 +215,13 @@
             align-items: center;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            transition: transform 0.2s, background 0.2s;
         }
 
         .card:active {
             transform: scale(0.92);
-            background: var(--accent-color);
-            color: white;
+            background: var(--accent-color) !important; /* تأكيد اللون */
+            color: white !important;
         }
 
         .card img {
@@ -156,9 +247,9 @@
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.1rem;
+            z-index: 10;
         }
 
-        /* للهواتف الأكبر والتابلت */
         @media (min-width: 600px) {
             .grid-container { grid-template-columns: repeat(3, 1fr); }
         }
@@ -166,83 +257,172 @@
 </head>
 <body data-theme="light">
 
-    <div class="top-header-card">
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
-        <img src="Screenshot_20260215_205840_WhatsApp.jpg" alt="شعار البرنامج" class="main-logo">
-        <h1>كنيسة مارجرجس باكوس</h1>
-        <h3>خدمة ابتدائي</h3>
-
-        <div class="notice-container">
-            <span>🔔</span>
-            <div class="notice-text">
-                <span>تنبيه: تم إضافة مناهج شهر إبريل لجميع المراحل.</span>
-            </div>
+    <div id="loginScreen">
+        <div id="loginBg"></div> <div class="login-card">
+            <img src="Screenshot_20260215_205840_WhatsApp.jpg" alt="Logo" class="main-logo">
+            <h2>تسجيل دخول الخدمة</h2>
+            <input type="email" id="userEmail" placeholder="البريد الإلكتروني" class="login-input">
+            <input type="password" id="userPass" placeholder="كلمة السر" class="login-input">
+            <button onclick="checkLogin()" class="login-btn">دخول</button>
+            <p id="loginError">الإيميل أو كلمة السر غير صحيحة!</p>
         </div>
-
-        <div class="update-badge" id="lastUpdate">آخر تحديث: 30 مارس 2026</div>
     </div>
 
-    <div class="grid-container">
-        
-        <a href="https://kutt.to/hdana" class="card" target="_blank">
-            <img src="1.png" alt="icon">
-            <h3>مرحلة حضانة</h3>
-        </a>
+    <div id="mainContent" style="display: none;">
+        <div class="top-header-card">
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+            <img src="Screenshot_20260215_205840_WhatsApp.jpg" alt="شعار البرنامج" class="main-logo">
+            <h1>كنيسة مارجرجس باكوس</h1>
+            <h3>خدمة ابتدائي</h3>
 
-        <a href="https://kutt.to/geo-pr1" class="card" target="_blank">
-            <img src="2.png" alt="icon">
-            <h3>أولي ابتدائي</h3>
-        </a>
+            <div class="notice-container">
+                <span>🔔</span>
+                <div class="notice-text">
+                    <span>تنبيه: تم إضافة مناهج شهر إبريل لجميع المراحل.</span>
+                </div>
+            </div>
 
-        <a href="https://kutt.to/geo-p2" class="card" target="_blank">
-            <img src="3.png" alt="icon">
-            <h3>تانية ابتدائي</h3>
-        </a>
+            <div class="update-badge" id="lastUpdate">آخر تحديث: 30 مارس 2026</div>
+        </div>
 
-        <a href="https://kutt.to/geo-p3" class="card" target="_blank">
-            <img src="4.png" alt="icon">
-            <h3>تالته ابتدائي</h3>
-        </a>
-
-        <a href="https://kutt.to/geo-p4" class="card" target="_blank">
-            <img src="5.png" alt="icon">
-            <h3>رابعة ابتدائي</h3>
-        </a>
-
-        <a href="https://kutt.to/geo-p5" class="card" target="_blank">
-            <img src="6.png" alt="icon">
-            <h3>خامسة ابتدائي</h3>
-        </a>
-
-        <a href="https://kutt.to/geo-p6" class="card" target="_blank">
-            <img src="7.png" alt="icon">
-            <h3>سادسة ابتدائي</h3>
-        </a>
-
-        <a href="https://kutt.to/khdam" class="card" target="_blank">
-            <img src="8.png" alt="icon">
-            <h3>الخدام</h3>
-        </a>
-
-        <a href="https://kutt.to/st-geogre-in-bakos-" class="card" target="_blank">
-            <img src="9.png" alt="icon">
-            <h3>وسائل إيضاح</h3>
-        </a>
-
-        <a href="https://kutt.to/tahder" class="card" download>
-            <img src="10.png" alt="icon">
-            <h3>التحضير</h3>
-        </a>
-
-        <a href="https://mega.nz/folder/0rpFnDqC#vLN2Pj-i_04RyR-wSgJgiw" class="card" download>
-            <img src="11.png" alt="icon">
-            <h3>الخدمات</h3>
-        </a>
-
+        <div class="grid-container">
+            <a href="https://kutt.to/hdana" class="card" target="_blank">
+                <img src="1.png" alt="icon">
+                <h3>مرحلة حضانة</h3>
+            </a>
+            <a href="https://kutt.to/geo-pr1" class="card" target="_blank">
+                <img src="2.png" alt="icon">
+                <h3>أولي ابتدائي</h3>
+            </a>
+            <a href="https://kutt.to/geo-p2" class="card" target="_blank">
+                <img src="3.png" alt="icon">
+                <h3>تانية ابتدائي</h3>
+            </a>
+            <a href="https://kutt.to/geo-p3" class="card" target="_blank">
+                <img src="4.png" alt="icon">
+                <h3>تالته ابتدائي</h3>
+            </a>
+            <a href="https://kutt.to/geo-p4" class="card" target="_blank">
+                <img src="5.png" alt="icon">
+                <h3>رابعة ابتدائي</h3>
+            </a>
+            <a href="https://kutt.to/geo-p5" class="card" target="_blank">
+                <img src="6.png" alt="icon">
+                <h3>خامسة ابتدائي</h3>
+            </a>
+            <a href="https://kutt.to/geo-p6" class="card" target="_blank">
+                <img src="7.png" alt="icon">
+                <h3>سادسة ابتدائي</h3>
+            </a>
+            <a href="https://kutt.to/khdam" class="card" target="_blank">
+                <img src="8.png" alt="icon">
+                <h3>الخدام</h3>
+            </a>
+            <a href="https://kutt.to/st-geogre-in-bakos-" class="card" target="_blank">
+                <img src="9.png" alt="icon">
+                <h3>وسائل إيضاح</h3>
+            </a>
+            <a href="https://kutt.to/tahder" class="card" download>
+                <img src="10.png" alt="icon">
+                <h3>التحضير</h3>
+            </a>
+            <a href="https://mega.nz/folder/0rpFnDqC#vLN2Pj-i_04RyR-wSgJgiw" class="card" download>
+                <img src="11.png" alt="icon">
+                <h3>الخدمات</h3>
+            </a>
+        </div>
     </div>
 
     <script>
-        // تبديل الوضع الداكن وحفظ الخيار
+        // --- بيانات جميع المستخدمين من الشيت مع كلمات سر عشوائية ---
+        // ملاحظة: تم تحويل الإيميلات لحروف صغيرة (Lowercase) لضمان مطابقتها
+        const usersData = {
+            "mariamkamal22@gmail.com": "MaKa@301",
+            "yostinareda15@gmail.com": "YoRe@202",
+            "mirnasamuel8@gmail.com": "MiSa@303",
+            "yostinawasfy3@gmail.com": "YoWa@404",
+            "demianaelkomos9@gmail.com": "DeEl@505",
+            "marinaadel100@gmail.com": "MaAd@606",
+            "saranashat7@gmail.com": "SaNa@707",
+            "shref_gamal@outlook.sa": "ShGa@808",
+            "eng.sherefgamal@gmail.com": "EnSh@909",
+            "monamoneir80@gmail.com": "MoMo@110",
+            "petersamuel700@gmail.com": "PeSa@211",
+            "fr.mikhailanton@gmail.com": "FrMi@312",
+            "mary_n_g@hotmail.com": "MaNG@413",
+            "monamounir369@gmail.com": "MoMo@514",
+            "ireneashraf22@gmail.com": "IrAs@615",
+            "veronamofreh@gmail.com": "VeMo@716",
+            "michealsamuel70@gmail.com": "MiSa@817",
+            "kerollosfawzy66@gmail.com": "KeFa@918",
+            "ghbrialmina@gmail.com": "GhMi@119",
+            "philo_pater2011@live.com": "PhPa@220",
+            "madlenkamal639@gmail.com": "MaKa@321",
+            "m_kamal639@yahoo.com": "MKaY@422",
+            "e_nabil73@yahoo.com": "ENaY@523",
+            "emadnabil73@gmail.com": "EmNa@624",
+            "heidi.youssef1989@gmail.com": "HeYo@725",
+            "mariamghaly810@gmail.com": "MaGh@826",
+            "marinareda1998@gmail.com": "MaRe@927",
+            "rehabwasfy9@gmail.com": "ReWa@128",
+            "ayis_kamal@yahoo.com": "AyKa@229",
+            "mina_wagdy10@yahoo.com": "MiWa@330",
+            "minawagdy6@gmail.com": "MiWa@431",
+            "f_kamal639@yahoo.com": "FKaY@532",
+            "merykamal10@gmail.com": "MeKa@633",
+            "s_kamal639@yahoo.com": "SKaY@734",
+            "sandrakamal10@gmail.com": "SaKa@835",
+            "shref_gamal@aol.com": "ShGa@936",
+            "eng.sherefgamal@yahoo.com": "EnSh@137",
+            "m_kamal639@gmail.com": "MKaG@238",
+            "georgefarag11@yahoo.com": "GeFa@339",
+            "georgefarag7777@gmail.com": "GeFa@440",
+            "maryghaly259@gmail.com": "MaGh@541",
+            "kerolloskamal639@gmail.com": "KeKa@642",
+            "fadyfawzy220@gmail.com": "FaFa@743",
+            "minafawzy220@gmail.com": "MiFa@844",
+            "phebeessam@yahoo.com": "PhEs@945",
+            "phebe_essam@hotmail.com": "PhEs@146",
+            "tasoniphebe10@gmail.com": "TaPh@247",
+            "m_nabil1996@outlook.sa": "MNaO@348",
+            "m_nabil73@yahoo.com": "MNaY@449",
+            "m.nabil369@gmail.com": "MNaG@550",
+            "kirolloskamal639@gmail.com": "KiKa@651",
+            "madlenkamal@yahoo.com": "MaKa@752",
+            "heidi.youssef@yahoo.com": "HeYo@853",
+            "rehabwasfy@yahoo.com": "ReWa@954"
+        };
+
+        // دالة التحقق من تسجيل الدخول
+        function checkLogin() {
+            const emailInput = document.getElementById('userEmail').value.toLowerCase().trim();
+            const passInput = document.getElementById('userPass').value;
+            const errorMsg = document.getElementById('loginError');
+
+            // التحقق من وجود الإيميل وتطابق كلمة السر
+            if (usersData[emailInput] && usersData[emailInput] === passInput) {
+                // حفظ حالة الدخول في المتصفح (localStorage)
+                localStorage.setItem('church_app_logged_in', 'true');
+                // حفظ الإيميل الحالي (اختياري، قد تحتاجه مستقبلاً)
+                localStorage.setItem('church_app_user_email', emailInput);
+                showMainContent();
+            } else {
+                // إظهار رسالة خطأ
+                errorMsg.style.display = 'block';
+                // إخفاء الرسالة بعد 3 ثواني
+                setTimeout(() => errorMsg.style.display = 'none', 3000);
+            }
+        }
+
+        // دالة إخفاء صفحة اللوجن وإظهار المحتوى الرئيسي
+        function showMainContent() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            // منع التمرير في صفحة اللوجن وإعادته للمحتوى الرئيسي
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- الأكواد الأصلية (لم تتغير) مع إضافة فحص التيم عند التحميل ---
         function toggleTheme() {
             const body = document.body;
             const theme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
@@ -251,10 +431,26 @@
             localStorage.setItem('church-app-theme', theme);
         }
 
-        // استعادة التفضيل عند فتح البرنامج
-        if(localStorage.getItem('church-app-theme') === 'dark') toggleTheme();
+        // عند تحميل الصفحة
+        window.onload = () => {
+            // 1. استعادة التيم المفضلة
+            if(localStorage.getItem('church-app-theme') === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.getElementById('themeBtn').innerText = '☀️';
+            }
 
-        // تسجيل الـ Service Worker لتمكين الـ Offline
+            // 2. فحص هل المستخدم مسجل دخوله مسبقاً؟
+            if (localStorage.getItem('church_app_logged_in') === 'true') {
+                showMainContent();
+            } else {
+                // إذا لم يكن مسجلاً، تأكد من إظهار صفحة اللوجن ومنع تمرير الخلفية
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('mainContent').style.display = 'none';
+                document.body.style.overflow = 'hidden';
+            }
+        };
+
+        // تسجيل الـ Service Worker (كما هو)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
