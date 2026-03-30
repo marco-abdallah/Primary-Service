@@ -4,21 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خدمة ابتدائي</title>
-	<link rel="manifest" href="manifest.json">
-	<meta name="theme-color" content="#2c3e50">
-	<link rel="apple-touch-icon" href="icon-192.png">
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <style>
-	/* تحسين استجابة الشبكة للموبايلات الصغيرة */
-	@media (max-width: 480px) {
-	    .grid-container {
-	        grid-template-columns: repeat(2, 1fr); /* عرض كارتين في الصف الواحد بدلاً من واحد */
-	        gap: 10px;
-	        padding: 10px;
-	    }
-	    .header-section h1 {
-	        font-size: 1.8rem;
-	    }
-	}
         /* إعدادات الخطوط والألوان العامة */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -52,6 +43,18 @@
             margin: 0 auto;
         }
 
+        /* تنسيق تحسين استجابة الشبكة للموبايلات الصغيرة */
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr); /* عرض كارتين في الصف الواحد بدلاً من واحد */
+                gap: 10px;
+                padding: 10px;
+            }
+            .header-section h1 {
+                font-size: 1.8rem;
+            }
+        }
+
         /* تنسيق المربع الواحد (الكارت) */
         .card {
             background: white;
@@ -62,6 +65,7 @@
             text-decoration: none; /* لإزالة الخط من تحت الرابط */
             color: inherit;
             display: block;
+            cursor: pointer; /* ليشعر المستخدم أنه قابل للضغط */
         }
 
         .card:hover {
@@ -86,44 +90,45 @@
 <body>
 
     <div class="header-section">
-        <h1>كنيسة مارجرجس باكوس خدمة ابتدائي</h1>
-        <img src="Screenshot_20260215_205840_WhatsApp.jpg" alt="شعار البرنامج" class="main-logo">
+        <h1>كنيسة مارجرجس باكوس</h1>
+	<h3>خدمة ابتدائي</h3>
+        <img src="logo.jpg" alt="شعار البرنامج" class="main-logo">
     </div>
 
     <div class="grid-container">
         
-        <a href="https://example.com/1" class="card" target="_blank">
-            <img src="https://via.placeholder.com/80" alt="أيقونة">
+        <a href="files-kg.pdf" class="card" download="منهج حضانة">
+            <img src="https://via.placeholder.com/80/e1f5fe/01579b?text=KG" alt="أيقونة حضانة">
             <h3>مرحلة حضانة</h3>
         </a>
 
-        <a href="https://example.com/2" class="card" target="_blank">
-            <img src="https://via.placeholder.com/80" alt="أيقونة">
+        <a href="files-grade1.pdf" class="card" download="منهج أولي ابتدائي">
+            <img src="https://via.placeholder.com/80/e8f5e9/1b5e20?text=1" alt="أيقونة أولي ابتدائي">
             <h3>مرحلة أولي ابتدائي</h3>
         </a>
 
-        <a href="https://example.com/3" class="card" target="_blank">
-            <img src="https://via.placeholder.com/80" alt="أيقونة">
+        <a href="files-grade2.pdf" class="card" download="منهج تانية ابتدائي">
+            <img src="https://via.placeholder.com/80/fffde7/fbc02d?text=2" alt="أيقونة تانية ابتدائي">
             <h3>مرحلة تانية ابتدائي</h3>
         </a>
 
-        <a href="https://example.com/4" class="card" target="_blank">
-            <img src="https://via.placeholder.com/80" alt="أيقونة">
+        <a href="files-grade3.pdf" class="card" download="منهج تالته ابتدائي">
+            <img src="https://via.placeholder.com/80/fff3e0/e65100?text=3" alt="أيقونة تالته ابتدائي">
             <h3>مرحلة تالته ابتدائي</h3>
         </a>
 
-        <a href="https://example.com/5" class="card" target="_blank">
-            <img src="https://via.placeholder.com/80" alt="أيقونة">
+        <a href="files-grade4.pdf" class="card" download="منهج رابعة ابتدائي">
+            <img src="https://via.placeholder.com/80/fce4ec/880e4f?text=4" alt="أيقونة رابعة ابتدائي">
             <h3>مرحلة رابعة ابتدائي</h3>
         </a>
 
-        <a href="https://example.com/6" class="card" target="_blank">
-            <img src="https://via.placeholder.com/80" alt="أيقونة">
+        <a href="files-grade5.pdf" class="card" download="منهج خامسة ابتدائي">
+            <img src="https://via.placeholder.com/80/f3e5f5/4a148c?text=5" alt="أيقونة خامسة ابتدائي">
             <h3>مرحلة خامسة ابتدائي</h3>
         </a>
 
-        <a href="https://example.com/7" class="card" target="_blank">
-            <img src="https://via.placeholder.com/80" alt="أيقونة">
+        <a href="files-grade6.pdf" class="card" download="منهج سادسة ابتدائي">
+            <img src="https://via.placeholder.com/80/efebe9/3e2723?text=6" alt="أيقونة سادسة ابتدائي">
             <h3>مرحلة سادسة ابتدائي</h3>
         </a>
 
