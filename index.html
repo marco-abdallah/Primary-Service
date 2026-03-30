@@ -3,156 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خدمة ابتدائي</title>
+    <title>خدمة ابتدائي - كنيسة مارجرجس</title>
     
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2c3e50">
+    <meta name="theme-color" content="#FF6B6B">
     <link rel="apple-touch-icon" href="icon-192.png">
 
     <style>
-        /* إعدادات الخطوط والألوان العامة */
+        /* تعريف متغيرات الألوان للوضعين الفاتح والداكن */
+        :root {
+            --bg-color: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --header-color: #ff6b6b;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --card-gradient: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-main: #e9ecef;
+            --header-color: #4cc9f0;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --card-gradient: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
             padding: 20px;
-            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        /* تنسيق العنوان الرئيسي وصورة البرنامج */
+        /* زر تبديل الوضع الداكن */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--header-color);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px var(--shadow);
+            z-index: 1000;
+        }
+
         .header-section {
-            margin-bottom: 40px;
-        }
-        .header-section h1 {
-            color: #333;
-            font-size: 2.5rem;
-        }
-        .main-logo {
-            width: 150px;
-            height: auto;
-            border-radius: 15px;
-            margin-top: 10px;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.8s ease;
         }
 
-        /* تنسيق شبكة المربعات السبعة */
+        .header-section h1 {
+            color: var(--header-color);
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+
+        .main-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--header-color);
+            padding: 5px;
+            background: white;
+            box-shadow: 0 6px 15px var(--shadow);
+        }
+
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        /* تنسيق تحسين استجابة الشبكة للموبايلات الصغيرة */
-        @media (max-width: 480px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr); /* عرض كارتين في الصف الواحد بدلاً من واحد */
-                gap: 10px;
-                padding: 10px;
-            }
-            .header-section h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* تنسيق المربع الواحد (الكارت) */
+        /* تنسيق الكارت بتصميم طفولي */
         .card {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-gradient);
+            border-radius: 24px;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            text-decoration: none; /* لإزالة الخط من تحت الرابط */
-            color: inherit;
-            display: block;
-            cursor: pointer; /* ليشعر المستخدم أنه قابل للضغط */
+            box-shadow: 0 6px 12px var(--shadow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid transparent;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transform: scale(1.05);
+            border-color: var(--header-color);
+        }
+
+        .card:active {
+            transform: scale(0.95);
         }
 
         .card img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            background: #fff;
+            padding: 5px;
+            box-shadow: 0 4px 8px var(--shadow);
         }
 
         .card h3 {
-            margin: 10px 0 0;
-            color: #2c3e50;
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        /* أنيميشن الدخول */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تحسين العرض للموبايل */
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .header-section h1 { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+
     <div class="header-section">
         <h1>كنيسة مارجرجس باكوس</h1>
-	<h3>خدمة ابتدائي</h3>
+        <h3>خدمة ابتدائي</h3>
         <img src="Screenshot_20260215_205840_WhatsApp.jpg" alt="شعار البرنامج" class="main-logo">
     </div>
 
     <div class="grid-container">
-        
         <a href="files-kg.pdf" class="card" download="منهج حضانة">
-            <img src="1.jpg" alt="أيقونة حضانة">
+            <img src="1.jpg" alt="حضانة">
             <h3>مرحلة حضانة</h3>
         </a>
 
-        <a href="files-grade1.pdf" class="card" download="منهج أولي ابتدائي">
-            <img src="1.jpg" alt="أيقونة أولي ابتدائي">
-            <h3>مرحلة أولي ابتدائي</h3>
-        </a>
-
-        <a href="files-grade2.pdf" class="card" download="منهج تانية ابتدائي">
-            <img src="1.jpg" alt="أيقونة تانية ابتدائي">
-            <h3>مرحلة تانية ابتدائي</h3>
-        </a>
-
-        <a href="files-grade3.pdf" class="card" download="منهج تالته ابتدائي">
-            <img src="1.jpg" alt="أيقونة تالته ابتدائي">
-            <h3>مرحلة تالته ابتدائي</h3>
-        </a>
-
-        <a href="files-grade4.pdf" class="card" download="منهج رابعة ابتدائي">
-            <img src="1.jpg" alt="أيقونة رابعة ابتدائي">
-            <h3>مرحلة رابعة ابتدائي</h3>
-        </a>
-
-        <a href="files-grade5.pdf" class="card" download="منهج خامسة ابتدائي">
-            <img src="1.jpg" alt="أيقونة خامسة ابتدائي">
-            <h3>مرحلة خامسة ابتدائي</h3>
-        </a>
-
-        <a href="files-grade6.pdf" class="card" download="منهج سادسة ابتدائي">
-            <img src="1.jpg" alt="أيقونة سادسة ابتدائي">
-            <h3>مرحلة سادسة ابتدائي</h3>
-        </a>
-
-        <a href="files-grade6.pdf" class="card" download="منهج سادسة ابتدائي">
-            <img src="2.jpg" alt="أيقونة سادسة ابتدائي">
-            <h3>الخدام</h3>
+        <a href="files-grade1.pdf" class="card" download="منهج أولي">
+            <img src="1.jpg" alt="أولي">
+            <h3>أولي ابتدائي</h3>
         </a>
 
         <a href="https://mega.nz/folder/0rpFnDqC#vLN2Pj-i_04RyR-wSgJgiw" class="card" target="_blank">
-            <img src="3.jpg" alt="ايقونه">
-            <h3>وسائل ايضاح</h3>
+            <img src="3.jpg" alt="وسائل">
+            <h3>وسائل إيضاح</h3>
         </a>
 
-        <a href="files-grade6.pdf" class="card" download="منهج سادسة ابتدائي">
-            <img src="4.jpg" alt="أيقونة سادسة ابتدائي">
-            <h3>التحضير</h3>
+        <a href="files-grade6.pdf" class="card" download="منهج سادسة">
+            <img src="2.jpg" alt="الخدام">
+            <h3>الخدام</h3>
         </a>
-
-        <a href="files-grade6.pdf" class="card" download="منهج سادسة ابتدائي">
-            <img src="5.jpg" alt="أيقونة سادسة ابتدائي">
-            <h3>الخدمات</h3>
-        </a>
-
     </div>
 
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeBtn');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                btn.innerHTML = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.innerHTML = '☀️';
+            }
+        }
+    </script>
 </body>
 </html>
