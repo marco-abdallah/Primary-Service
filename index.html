@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمة ابتدائي</title>
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="#2c3e50">
+	<link rel="apple-touch-icon" href="icon-192.png">
+    <style>
+        /* إعدادات الخطوط والألوان العامة */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* تنسيق العنوان الرئيسي وصورة البرنامج */
+        .header-section {
+            margin-bottom: 40px;
+        }
+        .header-section h1 {
+            color: #333;
+            font-size: 2.5rem;
+        }
+        .main-logo {
+            width: 150px;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+
+        /* تنسيق شبكة المربعات السبعة */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* تنسيق المربع الواحد (الكارت) */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-decoration: none; /* لإزالة الخط من تحت الرابط */
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-radius: 50%;
+        }
+
+        .card h3 {
+            margin: 10px 0 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>كنيسة مارجرجس باكوس خدمة ابتدائي</h1>
+        <img src="Screenshot_20260215_205840_WhatsApp.jpg" alt="شعار البرنامج" class="main-logo">
+    </div>
+
+    <div class="grid-container">
+        
+        <a href="https://example.com/1" class="card" target="_blank">
+            <img src="https://via.placeholder.com/80" alt="أيقونة">
+            <h3>مرحلة حضانة</h3>
+        </a>
+
+        <a href="https://example.com/2" class="card" target="_blank">
+            <img src="https://via.placeholder.com/80" alt="أيقونة">
+            <h3>مرحلة أولي ابتدائي</h3>
+        </a>
+
+        <a href="https://example.com/3" class="card" target="_blank">
+            <img src="https://via.placeholder.com/80" alt="أيقونة">
+            <h3>مرحلة تانية ابتدائي</h3>
+        </a>
+
+        <a href="https://example.com/4" class="card" target="_blank">
+            <img src="https://via.placeholder.com/80" alt="أيقونة">
+            <h3>مرحلة تالته ابتدائي</h3>
+        </a>
+
+        <a href="https://example.com/5" class="card" target="_blank">
+            <img src="https://via.placeholder.com/80" alt="أيقونة">
+            <h3>مرحلة رابعة ابتدائي</h3>
+        </a>
+
+        <a href="https://example.com/6" class="card" target="_blank">
+            <img src="https://via.placeholder.com/80" alt="أيقونة">
+            <h3>مرحلة خامسة ابتدائي</h3>
+        </a>
+
+        <a href="https://example.com/7" class="card" target="_blank">
+            <img src="https://via.placeholder.com/80" alt="أيقونة">
+            <h3>مرحلة سادسة ابتدائي</h3>
+        </a>
+
+        <a href="https://mega.nz/folder/0rpFnDqC#vLN2Pj-i_04RyR-wSgJgiw" class="card" target="_blank">
+            <img src="https://mega.nz/folder/0rpFnDqC#vLN2Pj-i_04RyR-wSgJgiw" alt="أيقونة">
+            <h3>وسائل مساعدة</h3>
+        </a>
+
+    </div>
+
+</body>
+</html>
