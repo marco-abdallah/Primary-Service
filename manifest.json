@@ -9,7 +9,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon1024.png",
+      "src": "https://raw.githubusercontent.com/marco-abdallah/Primary-Service/refs/heads/main/icon1024.png",
       "sizes": "1024x1042",
       "type": "image/png",
       "purpose": "any maskable"
